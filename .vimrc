@@ -11,6 +11,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -157,9 +158,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
@@ -231,3 +229,26 @@ set backspace=indent,eol,start
 nnoremap <Tab> gt
 nnoremap S-Tab>< gT
 nnoremap <silent> <S-t> :tabnew<CR>
+
+" Searching
+
+set hlsearch
+hi Search ctermbg=White
+hi Search ctermfg=Red
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set fileformats=unix,dos,mac
+
+if exists('$SHELL')
+  set shell=$SHELL
+else
+  set shell=/bin/sh
+endif
+
+" matching parenthesis etc ... color
+autocmd BufRead,BufNewFile * syn match parens /[\[\](){}]/ | hi parens ctermfg=LightMagenta
+
